@@ -23,6 +23,7 @@ spec:
         title: Name
         type: string
         description: Unique name of the component. Lowercase, URL-safe characters only.
+        pattern: "^[a-z0-9_\-]+$"
       description:
         title: Description
         type: string
