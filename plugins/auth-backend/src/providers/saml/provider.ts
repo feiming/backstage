@@ -129,12 +129,17 @@ export const createSamlProvider: AuthProviderFactory = ({
   const providerId = 'saml';
   const entryPoint = config.getString('entryPoint');
   const issuer = config.getString('issuer');
+  const cert = config.getString('cert');
   const opts = {
     entryPoint,
     issuer,
     path: `${url.pathname}/${providerId}/handler/frame`,
     tokenIssuer,
     appUrl: globalConfig.appUrl,
+    cert: cert
+      .replace('-----BEGIN CERTIFICATE-----', '')
+      .replace('-----END CERTIFICATE-----', '')
+      .replace(/\n$/, ''),
   };
 
   return new SamlAuthProvider(opts);
